@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Contact List App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-light" style="background-color:Beige;">
+    <a href="#" style="background-color:LightGray;color:#Black;padding:5px;border-style:solid;border-spacing:30px;border-radius: 5px;">Contact List</a>
+    <a href="{% url 'upload-contact' %}" style="background-color:LightGray;color:#Black;padding:5px;margin:5px;border-style:solid;border-spacing:30px;border-radius: 5px;">Add Contact</a>
+</nav>
+<br>
+{% block content %}
+<div class="card-columns">
+    {% for contact in contactlist %}
+    <div class="card" style="width: 12rem;background-color:Beige;margin-left:20px;">
+  <div class="card-body">
+
+    <h5 class="card-title">{{ contact.name }}</h5>
+    <p class="card-text">Address: {{ contact.address }}</p>
+    <p class="card-text">Occupation: {{ contact.profession }}</p>
+ 
+   <p class="card-title">Phone Number: {{contact.telephone }}</p>
+   <p class="card-title">Email: {{contact.email }}</p>
+   <center>
+       <a href="update/{{contact.id}}" class="btn btn-warning" style="width:100px;margin:5px;" id = '{{contact.id}}'>Edit</a>
+       <a href="delete/{{contact.id}}" class="btn btn-danger" style="width:100px;margin:5px;" id = '{{contact.id}}'>Delete</a>
+    </center>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}
+</body>
+</html>
